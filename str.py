@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import google.generativeai as genai
 
-genai.configure(api_key="AIzaSyDwenD_N4-FX6DA-eDufGsTBT-4XT3ujdE")
+genai.configure(api_key="")
 model=genai.GenerativeModel(model_name="gemini-2.0-flash")
 
 st.title("Edutech Learning Platform")
@@ -67,4 +67,5 @@ elif selection == "Recommendation":
                 st.json(res.json())
         except Exception as e:
             st.error(f"🚫 Error: {e}")
+
 
