@@ -2,17 +2,14 @@ import streamlit as st
 import requests
 import google.generativeai as genai
 
-# 🔐 Set Gemini API key
-genai.configure(api_key="AIzaSyACzzxZYUln5BdBQock5Tm2NWsVEa63U-Q")
-model = genai.GenerativeModel(model_name="gemini-2.0-flash")
-
-# 🌟 App Title
+#Set Gemini API key
+genai.configure(api_key="")
+model = genai.GenerativeModel(model_name="gemini-2.0-flash"
 st.title("📚 Edutech Learning Platform")
 
-# 🌐 Sidebar Navigation
 selection = st.sidebar.selectbox("Choose the page", ["Submit Learning Data", "Recommendation", "Feedback", "Chat Tutor"])
 
-# 📥 Submit Learning Data Page
+# Submit Learning Data Page
 if selection == "Submit Learning Data":
     st.header("📄 Submit Learning Form")
     with st.form("submit_form"):
@@ -39,11 +36,11 @@ if selection == "Submit Learning Data":
                 res = requests.post("http://127.0.0.1:8000/submit", json=datas)
                 response = res.json()
                 st.write("📡 Response from API:", response)
-                st.success(response.get("message", "✅ Submitted successfully."))
+                st.success(response.get("message", " Submitted successfully."))
             except Exception as e:
                 st.error(f"API Error: {e}")
 
-# 🧠 Feedback Sentiment Analysis Page
+#  Feedback Sentiment Analysis Page
 elif selection == "Feedback":
     st.header("🧠 Feedback Sentiment Analysis")
     feedback = st.text_area("Enter your feedback:")
@@ -56,7 +53,7 @@ elif selection == "Feedback":
         except Exception as e:
             st.error(f"API Error: {e}")
 
-# 🤖 AI Chat Tutor Page
+#  AI Chat Tutor Page
 elif selection == "Chat Tutor":
     st.header("🤖 AI Tutor ChatBot")
     prmt = st.text_input("Ask your doubt:")
@@ -69,7 +66,7 @@ elif selection == "Chat Tutor":
         else:
             st.warning("Please enter a question.")
 
-# 📊 Recommendation Page
+# Recommendation Page
 elif selection == "Recommendation":
     user_id = st.number_input("Enter the User Id", min_value=1, step=1)
     if st.button("Get Recommendations"):
@@ -87,3 +84,4 @@ elif selection == "Recommendation":
                 st.warning("No recommendations found or invalid key in API response.")
         except Exception as e:
             st.error(f"API Error: {e}")
+
